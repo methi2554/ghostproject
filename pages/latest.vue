@@ -7,7 +7,7 @@
           <a-row>
             <a-col
               :span="24"
-              style="text-align:left; color:#02d767; font-size:60px ;padding:100px 0"
+              style="text-align:left; color:#02d767; font-size:60px ;padding:100px 0 ; margin-left:-100px; "
               >Latest</a-col
             >
           </a-row>
