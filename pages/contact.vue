@@ -1,4 +1,5 @@
 <template>
+<body class="hg">
   <a-row class="toprow">
     <a-col class="class" :span="4"></a-col>
     <a-col :span="16">
@@ -110,6 +111,7 @@
     </a-col>
     <a-col :span="4"></a-col>
   </a-row>
+  </body>
 </template>
 
 <script>
@@ -138,7 +140,7 @@ export default {
   left: 75%;
   top: 70%;
 }
-.toprow {
+.hg {
   background-image: url("../images/contactpage.jpg");
 }
 .textfield {

@@ -1,15 +1,17 @@
 <template>
-  <body class="body">
+  <body class="background">
     <a-row>
       <a-row class="row">
-        <a-col :span="4" class="sider"> </a-col>
+        <a-col :span="4"> </a-col>
         <a-col :span="8" class="leftcol">
-          <h1 class="h1">
+          <h1 class="h1" style="font-size: 70px; color:white">
             <span class="topp">Topp</span> Jirayut <br />
             Srupsrisopa
           </h1>
-          <h3 style="font-size : 25px">All you need to know about Crypto</h3>
-          <p style="font-size : 15px">
+          <h3 style="font-size : 25px ; color:white">
+            All you need to know about Crypto
+          </h3>
+          <p style="font-size : 15px ; color:white">
             Soirée BBA ouverte à tousJeudi 10 juin à partir de 18h30 <br />
             <span class="underline"> Présentiel à Thee 51 Tasty </span> Moments
           </p>
@@ -21,15 +23,15 @@
         </a-col>
       </a-row>
       <a-row class="secrow">
-        <a-col :span="4" class="secsider"> </a-col>
-        <a-col :span="8" class="secleftcol">
+        <a-col :span="4"></a-col>
+        <a-col :span="8">
           <div class="secpic">
             <img class="aboutpicture" src="../images/aboutpic.png" alt="" />
           </div>
         </a-col>
         <a-col :span="12" class="secrightcol"
           ><div class="paragraph">
-            <h1 style="font-size : 50px">About Me</h1>
+            <h1 style="font-size : 50px ; color:white">About Me</h1>
             <p class="p">
               Topp is a speaker and one of Thailand’s leading bitcoin and open
               blockchain experts, who is the Founder and Group CEO of Bitkub.com
@@ -43,9 +45,12 @@
               and a central banker.
             </p>
             <div>
-              <span class="more">
-                More About Me <a-icon type="arrow-right"
-              /></span>
+              <a-button
+                style="border:2px solid #02d767 ; background:transparent ; border-radius:20px ; color:#02d767"
+                type="primary"
+              >
+               <nuxt-link style="color:#02d767" to="/about"> More About Me</nuxt-link><a-icon type="right" />
+              </a-button>
             </div></div
         ></a-col>
       </a-row>
@@ -114,7 +119,7 @@
                 </a-card>
               </a-col>
             </a-row>
-            <a-button class="showmorebtn">Show More</a-button>
+            <a-button class="showmorebtn"><nuxt-link to="/event"> Show More</nuxt-link></a-button>
           </div>
         </a-col>
         <a-col :span="4"> </a-col>
@@ -161,14 +166,6 @@
               ></iframe
             ></a-col>
           </a-row>
-          <a-row class="arrow">
-            <a-col :span="24">
-              <a-icon class="arrowicon" type="left" /><a-icon
-                class="arrowicon"
-                type="right"
-              />
-            </a-col>
-          </a-row>
         </a-col>
         <a-col :span="4"></a-col>
       </a-row>
@@ -200,7 +197,7 @@
                 </a-card>
               </a-col>
             </a-row>
-            <a-button class="showmorebtn">Show More</a-button>
+            <a-button class="showmorebtn"><nuxt-link style="color:#02d767" to="/blog"> Show More</nuxt-link></a-button>
           </div>
         </a-col>
         <a-col :span="4"></a-col>
@@ -222,23 +219,11 @@ export default {
 </script>
 
 <style scoped>
-.body {
+.background {
   background-image: url("../images/homepage.jpg");
 }
 .row {
   height: 85vh;
-}
-.sider {
-  display: flex;
-  justify-content: center;
-}
-.h1 {
-  font-size: 70px;
-}
-.leftcol,
-h1,
-h3 {
-  color: white;
 }
 .topp {
   color: #02d767;
@@ -329,7 +314,6 @@ h3 {
   position: absolute;
   border: 1px solid #9f9f9f;
   width: 20px;
-
   top: 50%;
   right: 110%;
 }
@@ -373,14 +357,5 @@ h3 {
 .lasttalk {
   display: flex;
   justify-content: right;
-}
-.arrow {
-  text-align: right;
-  padding-top: 50px;
-}
-.arrowicon {
-  color: #02d767;
-  width: 50px;
-  font-size: 50px;
 }
 </style>

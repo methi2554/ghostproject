@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <div class="bg">
     <a-row class="header">
       <a-col class="logo" :span="4">
         <img class="logoimage" src="../images/topleftlogo.svg" alt="" />
@@ -56,12 +56,12 @@
 export default {};
 </script>
 
-<style scoped>
+<style>
 .logo {
   display: flex;
   justify-content: center;
 }
-.background{
+.bg{
   background-color: transparent;
 }
 .logoimage {
@@ -173,5 +173,11 @@ export default {};
 .flogo {
   width: 100px;
   height: 100px;
+}
+a:hover{
+  color: #02d767;
+}
+a:focus{
+  border-bottom:2px solid #02d767 ;
 }
 </style>

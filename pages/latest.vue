@@ -58,15 +58,16 @@
 </template>
 
 <script>
-import { getPosts } from "../api/posts";
+import { getLatest } from "../api/posts";
 export default {
   layout: "Header",
   async asyncData() {
-    const posts = await getPosts();
+    const posts = await getLatest();
     return { posts: posts };
   }
 };
 </script>
+
 <style scoped>
 .body {
   background-image: url("../images/Webbitkub.jpg");

@@ -1,4 +1,5 @@
 <template>
+<body class="hg">
   <a-row class="toprow">
     <a-col :span="4"></a-col>
     <a-col :span="16">
@@ -75,6 +76,7 @@
     </a-col>
     <a-col :span="4"></a-col>
   </a-row>
+  </body>
 </template>
 <script>
 
@@ -88,7 +90,7 @@ export default {
 };
 </script>
 <style scoped>
-.toprow {
+.hg {
   background-image: url("../images/blogpage.jpg");
 }
 .owner {

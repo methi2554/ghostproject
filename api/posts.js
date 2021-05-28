@@ -56,3 +56,41 @@ export async function getEvents() {
             console.error(err);
         })
   }
+  export async function getAllEvents() {
+    return await api.posts
+
+        .browse({
+            limit: "all",
+            include:"tags",
+            filter:"tag:event"
+
+        })
+        .catch(err => {
+            console.error(err);
+        })
+  }
+
+  export async function getPress() {
+    return await api.posts
+        .browse({
+            limit: "all",
+            include:"tags",
+            filter:"tag:press"
+        })
+        .catch(err => {
+            console.error(err);
+        })
+  } 
+
+  export async function getLatest() {
+    return await api.posts
+
+        .browse({
+            limit: "all",
+            include:"tags",
+            filter:"tag:latest"
+        })
+        .catch(err => {
+            console.error(err);
+        })
+  } 
