@@ -113,7 +113,8 @@
             <a-row class="rowcard" :gutter="[0, 16]">
               <a-col
                 class="colcard"
-                :span="6"
+                :md="6"
+                :sm="24"
                 v-for="(event, index) in events"
                 :key="index"
               >
@@ -155,7 +156,7 @@
       </a-row>
       <a-row class="lasttalk">
         <a-col :span="4"></a-col>
-        <a-col :span="16">
+        <a-col :span="16" :xs="24">
           <a-row style="color:white; font-size:30px; padding-bottom:50px;"
             >Latest Talk</a-row
           >
@@ -372,9 +373,8 @@ export default {
   content: "";
   position: absolute;
   border: 1px solid white;
-  width: 56vw;
+  width: 100%;
   top: 60%;
-  left: 110%;
 }
 .rowcard {
   padding-bottom: 50px;
@@ -429,6 +429,6 @@ export default {
   border-radius: 20px;
 }
 .ant-modal-content {
-  border-radius: 30px !important;
+  background: red !important;
 }
 </style>
