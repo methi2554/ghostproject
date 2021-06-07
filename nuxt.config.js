@@ -30,6 +30,11 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+        // Simple usage
+        '@nuxtjs/moment',
+
+        // With options
+        ['@nuxtjs/moment', { /* module options */ }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

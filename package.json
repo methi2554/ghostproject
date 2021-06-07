@@ -13,8 +13,13 @@
     "@tryghost/content-api": "^1.5.4",
     "ant-design-vue": "^1.7.4",
     "core-js": "^3.9.1",
+    "jquery": "^3.6.0",
     "moment": "^2.29.1",
-    "nuxt": "^2.15.3"
+    "nuxt": "^2.15.3",
+    "scss": "^0.2.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/moment": "^1.6.1",
+    "vue-elevator": "^1.1.4"
+  }
 }

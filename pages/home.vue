@@ -5,7 +5,7 @@
         <a-col :span="4"> </a-col>
         <a-col :span="8" class="leftcol">
           <h1 class="h1" style="font-size: 70px; color:white">
-            <span class="topp">Topp</span> Jirayut <br />
+            <span style="color: #02d767;">Topp</span> Jirayut <br />
             Srupsrisopa
           </h1>
           <h3 style="font-size : 25px ; color:white">
@@ -17,22 +17,29 @@
           </p>
         </a-col>
         <a-col :span="12" class="rightcol">
-          <div class="rcpic">
-            <img class="toppic" src="../images/topedit.png" alt="" />
+          <div id="slideshow">
+            <div>
+              <img class="toppic" src="../images/topedit.png" alt="" />
+            </div>
+            <div>
+              <img class="toppic" src="../images/secslide.png" alt="" />
+            </div>
           </div>
         </a-col>
       </a-row>
-      <a-row class="secrow">
+      <a-row class="secondrow">
         <a-col :span="4"></a-col>
         <a-col :span="8">
-          <div class="secpic">
+          <div>
             <img class="aboutpicture" src="../images/aboutpic.png" alt="" />
           </div>
         </a-col>
-        <a-col :span="12" class="secrightcol"
+        <a-col :span="12"
           ><div class="paragraph">
             <h1 style="font-size : 50px ; color:white">About Me</h1>
-            <p class="p">
+            <p
+              style="  font-size: 20px; color: white;"
+            >
               Topp is a speaker and one of Thailand’s leading bitcoin and open
               blockchain experts, who is the Founder and Group CEO of Bitkub.com
               — Thailand’s Leading Regulated Cryptocurrency Exchange. He
@@ -49,7 +56,9 @@
                 style="border:2px solid #02d767 ; background:transparent ; border-radius:20px ; color:#02d767"
                 type="primary"
               >
-               <nuxt-link style="color:#02d767" to="/about"> More About Me</nuxt-link><a-icon type="right" />
+                <nuxt-link style="color:#02d767" to="/about">
+                  More About Me</nuxt-link
+                ><a-icon type="right" />
               </a-button>
             </div></div
         ></a-col>
@@ -108,18 +117,38 @@
                 v-for="(event, index) in events"
                 :key="index"
               >
-                <a-card class="card">
+                <a-card
+                  class="card"
+                  @click="
+                    () => (
+                      (modal2Visible = true),
+                      (eventdataimage = event.feature_image)
+                    )
+                  "
+                >
                   <img
                     class="cardpicture"
                     slot="cover"
                     alt="example"
                     :src="event.feature_image"
                   />
-                  <p style="color:white">{{ event.published_at }}</p>
+                  <p style="color:white">{{ $moment(event.published_at).format("Do MMM YYYY")  }}</p>
                 </a-card>
               </a-col>
+              <a-modal
+                bodyStyle="height:600px;"
+                v-model="modal2Visible"
+                centered
+                :footer="null"
+                :width="600"
+                class="modal"
+              >
+                <img :src="eventdataimage" class="full-img" alt="" />
+              </a-modal>
             </a-row>
-            <a-button class="showmorebtn"><nuxt-link to="/event"> Show More</nuxt-link></a-button>
+            <a-button class="showmorebtn"
+              ><nuxt-link to="/event"> Show More</nuxt-link></a-button
+            >
           </div>
         </a-col>
         <a-col :span="4"> </a-col>
@@ -186,18 +215,22 @@
                 v-for="(blog, index) in blogs"
                 :key="index"
               >
-                <a-card class="card">
+                <a-card class="card" @click="setBlogData(blog)">
                   <img
                     class="cardpicture"
                     slot="cover"
                     alt="example"
                     :src="blog.feature_image"
                   />
-                  <p style="color:white">{{ blog.published_at }}</p>
+                  <p style="color:white">{{ blog.title }}</p>
                 </a-card>
               </a-col>
             </a-row>
-            <a-button class="showmorebtn"><nuxt-link style="color:#02d767" to="/blog"> Show More</nuxt-link></a-button>
+            <a-button class="showmorebtn"
+              ><nuxt-link style="color:#02d767" to="/blog">
+                Show More</nuxt-link
+              ></a-button
+            >
           </div>
         </a-col>
         <a-col :span="4"></a-col>
@@ -206,6 +239,7 @@
   </body>
 </template>
 <script>
+import $ from "jquery";
 import { getPosts, getEvents, getBlogs } from "../api/posts";
 export default {
   layout: "Header",
@@ -213,20 +247,38 @@ export default {
     const posts = await getPosts();
     const events = await getEvents();
     const blogs = await getBlogs();
-    return { posts: posts, events: events, blogs: blogs };
+    return { posts: posts, events: events, blogs: blogs, modal2Visible: false };
+  },
+  methods: {
+    setBlogData(blog) {
+      console.log(blog, "this is ");
+      this.$store.commit("store/setBlog", blog);
+      this.$router.push("/myblog");
+    }
+  },
+
+  mounted() {
+    $("#slideshow > div:gt(0)").hide();
+
+    setInterval(function() {
+      $("#slideshow > div:first")
+        .fadeOut(5000)
+        .next()
+        .fadeIn(5000)
+        .end()
+        .appendTo("#slideshow");
+    }, 10000);
   }
 };
 </script>
 
 <style scoped>
+@import "../assets/scss/antdv.scss";
 .background {
   background-image: url("../images/homepage.jpg");
 }
 .row {
   height: 85vh;
-}
-.topp {
-  color: #02d767;
 }
 .leftcol {
   text-align: left;
@@ -239,15 +291,14 @@ export default {
 .rightcol {
   display: flex;
   justify-content: flex-end;
-  padding-top: 80px;
 }
 .toppic {
   width: 100%;
-  height: 90%;
+  height: 100%;
   border-top-left-radius: 450px;
   border-bottom-left-radius: 50px;
 }
-.secrow {
+.secondrow {
   padding-top: 200px;
 }
 .aboutpicture {
@@ -257,10 +308,6 @@ export default {
   width: 35vw;
   padding-left: 100px;
   padding-top: 50px;
-}
-.p {
-  font-size: 20px;
-  color: white;
 }
 .more {
   color: #02d767;
@@ -342,6 +389,8 @@ export default {
   background: #707070;
   width: 90%;
   border: #707070;
+  box-shadow: 2px 10px 18px black;
+  cursor: pointer;
 }
 .cardpicture {
   width: 100%;
@@ -357,5 +406,29 @@ export default {
 .lasttalk {
   display: flex;
   justify-content: right;
+}
+#slideshow {
+  position: relative;
+  width: 100vw;
+  height: 85vh;
+}
+
+#slideshow > div {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 1px;
+}
+.full-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: 20px;
+}
+.ant-modal-content {
+  border-radius: 30px !important;
 }
 </style>

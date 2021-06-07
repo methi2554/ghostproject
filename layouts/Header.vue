@@ -1,6 +1,6 @@
 <template>
   <div class="bg">
-    <a-row class="header">
+    <a-row class="header" id ="header">
       <a-col class="logo" :span="4">
         <img class="logoimage" src="../images/topleftlogo.svg" alt="" />
       </a-col>
@@ -21,10 +21,10 @@
       <a-row>
         <a-col class="footer" :span="24">
           <div class="firstfooter">
-            <div class="circle">
+            <a-back-top id="button" class="circle"> 
               <div class="arrow1"></div>
               <div class="arrow2"></div>
-            </div>
+            </a-back-top>
           </div>
           <div class="connect">Connect With Us</div>
         </a-col>
@@ -134,13 +134,12 @@ export default {};
 .circle {
   width: 100px;
   height: 100px;
-  line-height: 500px;
   border-radius: 50%;
   font-size: 50px;
-  color: #fff;
   display: flex;
   justify-content: center;
   background: #171717;
+  border: none;
 }
 .arrow1,
 .arrow2 {
@@ -179,5 +178,20 @@ a:hover{
 }
 a:focus{
   border-bottom:2px solid #02d767 ;
+}
+.circle:hover{
+  background: #171717;
+  border: none;
+}
+.circle:focus{
+  background: #171717;
+}
+.ant-back-top {
+    position: relative;
+    cursor: pointer;
+}
+.firstfooter{
+  padding-top: 50px;
+  padding-left: 200px;
 }
 </style>

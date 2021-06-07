@@ -12,7 +12,8 @@ export async function getPosts() {
 
         .browse({
             limit: "all",
-            include:"tags",
+            include:"tags,authors",
+            fields:"title,published_at,excerpt,html"
         })
         .catch(err => {
             console.error(err);
@@ -23,7 +24,7 @@ export async function getBlogs() {
     return await api.posts
         .browse({
             limit: "4",
-            include:"tags",
+            include:"tags,authors,primary_author",
             filter:"tag:blog"
         })
         .catch(err => {
@@ -35,7 +36,7 @@ export async function getBlogs() {
     return await api.posts
         .browse({
             limit: "all",
-            include:"tags",
+            include:"tags,authors,primary_author",
             filter:"tag:blog"
         })
         .catch(err => {
@@ -48,7 +49,7 @@ export async function getEvents() {
 
         .browse({
             limit: "8",
-            include:"tags",
+            include:"tags,authors",
             filter:"tag:event"
 
         })
@@ -61,7 +62,7 @@ export async function getEvents() {
 
         .browse({
             limit: "all",
-            include:"tags",
+            include:"tags,authors",
             filter:"tag:event"
 
         })
@@ -74,7 +75,7 @@ export async function getEvents() {
     return await api.posts
         .browse({
             limit: "all",
-            include:"tags",
+            include:"tags,authors",
             filter:"tag:press"
         })
         .catch(err => {
@@ -87,7 +88,7 @@ export async function getEvents() {
 
         .browse({
             limit: "all",
-            include:"tags",
+            include:"tags,authors",
             filter:"tag:latest"
         })
         .catch(err => {
