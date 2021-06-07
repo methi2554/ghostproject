@@ -8,11 +8,10 @@ const api = new GhostContentAPI({
   });
 
 export async function getPosts() {
-    return await api.posts
+    return  api.posts
 
         .browse({
             limit: "all",
-            include:"tags,authors",
             fields:"title,published_at,excerpt,html"
         })
         .catch(err => {

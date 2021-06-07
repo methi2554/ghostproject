@@ -113,8 +113,7 @@
             <a-row class="rowcard" :gutter="[0, 16]">
               <a-col
                 class="colcard"
-                :md="6"
-                :sm="24"
+                :span="6"
                 v-for="(event, index) in events"
                 :key="index"
               >
@@ -156,7 +155,7 @@
       </a-row>
       <a-row class="lasttalk">
         <a-col :span="4"></a-col>
-        <a-col :span="16" :xs="24">
+        <a-col :span="16">
           <a-row style="color:white; font-size:30px; padding-bottom:50px;"
             >Latest Talk</a-row
           >
@@ -373,8 +372,9 @@ export default {
   content: "";
   position: absolute;
   border: 1px solid white;
-  width: 100%;
+  width: 56vw;
   top: 60%;
+  left: 110%;
 }
 .rowcard {
   padding-bottom: 50px;
