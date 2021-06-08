@@ -37,9 +37,7 @@
         <a-col :span="12"
           ><div class="paragraph">
             <h1 style="font-size : 50px ; color:white">About Me</h1>
-            <p
-              style="  font-size: 20px; color: white;"
-            >
+            <p style="  font-size: 20px; color: white;">
               Topp is a speaker and one of Thailand’s leading bitcoin and open
               blockchain experts, who is the Founder and Group CEO of Bitkub.com
               — Thailand’s Leading Regulated Cryptocurrency Exchange. He
@@ -132,7 +130,9 @@
                     alt="example"
                     :src="event.feature_image"
                   />
-                  <p style="color:white">{{ $moment(event.published_at).format("Do MMM YYYY")  }}</p>
+                  <p style="color:white">
+                    {{ $moment(event.published_at).format("Do MMM YYYY") }}
+                  </p>
                 </a-card>
               </a-col>
               <a-modal
@@ -160,40 +160,35 @@
             >Latest Talk</a-row
           >
           <a-row
-            ><a-col :span="24">
-              <iframe
-                width="100%"
-                height="500px"
-                src="https://www.youtube.com/embed/xkSWg5XeyWw"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe> </a-col
-          ></a-row>
+            ><a-col
+              :span="24"
+              v-for="(topVideo, index) in topVideos"
+              :key="index"
+            >
+              <div v-html="topVideo.html">
+                <iframe>{{ topVideo.html }}</iframe>
+              </div></a-col
+            ></a-row
+          >
           <a-row :gutter="[16, 16]">
-            <a-col :span="12"
-              ><iframe
-                width="100%"
-                height="315"
-                src="https://www.youtube.com/embed/C-Edz_RXi8E"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe
-            ></a-col>
-            <a-col :span="12"
-              ><iframe
-                width="100%"
-                height="315"
-                src="https://www.youtube.com/embed/nIWaYU36XHI"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe
-            ></a-col>
+            <a-col
+              :span="12"
+              v-for="(leftVideo, index) in leftVideos"
+              :key="index"
+            >
+              <div style="height:400px" v-html="leftVideo.html">
+                <iframe>{{ leftVideo.html }}</iframe>
+              </div></a-col
+            >
+            <a-col
+              :span="12"
+              v-for="(rightVideo, index) in rightVideos"
+              :key="index"
+            >
+              <div style="height:400px" v-html="rightVideo.html">
+                <iframe>{{ rightVideo.html }}</iframe>
+              </div></a-col
+            >
           </a-row>
         </a-col>
         <a-col :span="4"></a-col>
@@ -215,15 +210,17 @@
                 v-for="(blog, index) in blogs"
                 :key="index"
               >
-                <a-card class="card" @click="setBlogData(blog)">
-                  <img
-                    class="cardpicture"
-                    slot="cover"
-                    alt="example"
-                    :src="blog.feature_image"
-                  />
-                  <p style="color:white">{{ blog.title }}</p>
-                </a-card>
+                <nuxt-link :to="{ path: blog.slug }">
+                  <a-card class="card">
+                    <img
+                      class="cardpicture"
+                      slot="cover"
+                      alt="example"
+                      :src="blog.feature_image"
+                    />
+                    <p style="color:white">{{ blog.title }}</p>
+                  </a-card>
+                </nuxt-link>
               </a-col>
             </a-row>
             <a-button class="showmorebtn"
@@ -240,14 +237,34 @@
 </template>
 <script>
 import $ from "jquery";
-import { getPosts, getEvents, getBlogs } from "../api/posts";
+import {
+  getPosts,
+  getEvents,
+  getBlogs,
+  getTopVideo,
+  getLeftSideVideo,
+  getRightSideVideo
+} from "../api/posts";
 export default {
   layout: "Header",
   async asyncData() {
+    const topv = "";
     const posts = await getPosts();
     const events = await getEvents();
     const blogs = await getBlogs();
-    return { posts: posts, events: events, blogs: blogs, modal2Visible: false };
+    const topVideos = await getTopVideo();
+    const leftVideos = await getLeftSideVideo();
+    const rightVideos = await getRightSideVideo();
+    return {
+      posts: posts,
+      events: events,
+      blogs: blogs,
+      modal2Visible: false,
+      topVideos: topVideos,
+      leftVideos: leftVideos,
+      rightVideos: rightVideos,
+      topv: topv
+    };
   },
   methods: {
     setBlogData(blog) {
@@ -429,6 +446,7 @@ export default {
   border-radius: 20px;
 }
 .ant-modal-content {
-  background: red !important;
+  border-radius: 30px !important;
 }
+
 </style>

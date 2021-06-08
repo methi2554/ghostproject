@@ -8,11 +8,11 @@ const api = new GhostContentAPI({
   });
 
 export async function getPosts() {
-    return  api.posts
+    return await api.posts
 
         .browse({
             limit: "all",
-            fields:"title,published_at,excerpt,html"
+            fields:"title,published_at,html,slug,feature_image",
         })
         .catch(err => {
             console.error(err);
@@ -23,7 +23,7 @@ export async function getBlogs() {
     return await api.posts
         .browse({
             limit: "4",
-            include:"tags,authors,primary_author",
+            fields:"title,published_at ,html,slug,feature_image",
             filter:"tag:blog"
         })
         .catch(err => {
@@ -35,7 +35,7 @@ export async function getBlogs() {
     return await api.posts
         .browse({
             limit: "all",
-            include:"tags,authors,primary_author",
+            fields:"title,published_at ,html,slug,feature_image",
             filter:"tag:blog"
         })
         .catch(err => {
@@ -48,7 +48,7 @@ export async function getEvents() {
 
         .browse({
             limit: "8",
-            include:"tags,authors",
+            fields:"title,published_at ,html,slug,feature_image",
             filter:"tag:event"
 
         })
@@ -61,7 +61,7 @@ export async function getEvents() {
 
         .browse({
             limit: "all",
-            include:"tags,authors",
+            fields:"title,published_at ,html,slug,feature_image",
             filter:"tag:event"
 
         })
@@ -74,7 +74,7 @@ export async function getEvents() {
     return await api.posts
         .browse({
             limit: "all",
-            include:"tags,authors",
+            fields:"title,published_at  , html,slug,feature_image",
             filter:"tag:press"
         })
         .catch(err => {
@@ -87,10 +87,57 @@ export async function getEvents() {
 
         .browse({
             limit: "all",
-            include:"tags,authors",
+            fields:"title,published_at,html,slug,feature_image",
             filter:"tag:latest"
         })
         .catch(err => {
             console.error(err);
         })
-  } 
+  }
+  
+  export async function getTopVideo() {
+    return await api.posts
+        .browse({
+            limit: "1",
+            fields:"html",
+            filter:"tag:topvideo"
+            
+        })
+        .catch(err => {
+            console.error(err);
+        })
+  }
+
+  export async function getLeftSideVideo() {
+    return await api.posts
+        .browse({
+            limit: "1",
+            fields:"html",
+            filter:"tag:leftvideo"
+        })
+        .catch(err => {
+            console.error(err);
+        })
+  }
+
+  export async function getRightSideVideo() {
+    return await api.posts
+        .browse({
+            limit: "1",
+            fields:"html",
+            filter:"tag:rightvideo"
+        })
+        .catch(err => {
+            console.error(err);
+        })
+  }
+
+  export async function getSinglePost(postSlug) {
+    return await api.posts
+        .read({
+            slug:postSlug,
+        })
+        .catch(err => {
+            console.error(err);
+        })
+  }

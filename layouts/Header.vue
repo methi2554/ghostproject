@@ -1,19 +1,21 @@
 <template>
-  <div class="bg">
-    <a-row class="header" id ="header">
-      <a-col class="logo" :span="4">
-        <img class="logoimage" src="../images/topleftlogo.svg" alt="" />
-      </a-col>
-      <a-col class="link" :span="10">
-        <nuxt-link class="home" to="/home">Home</nuxt-link>
-        <nuxt-link class="about" to="/about">About</nuxt-link>
-        <nuxt-link class="latest" to="/latest">Latest</nuxt-link>
-        <nuxt-link class="press" to="/press">Press</nuxt-link>
-        <nuxt-link class="blog" to="/blog">Blog</nuxt-link>
-        <nuxt-link class="contact" to="/contact">Contact</nuxt-link>
-      </a-col>
-      <a-col :span="10"> </a-col>
-    </a-row>
+  <div>
+    <div class="bg">
+      <a-row class="header" id="header">
+        <a-col class="logo" :span="4">
+          <img class="logoimage" src="../images/topleftlogo.svg" alt="" />
+        </a-col>
+        <a-col class="link" :span="10">
+          <nuxt-link class="home" to="/home">Home</nuxt-link>
+          <nuxt-link class="about" to="/about">About</nuxt-link>
+          <nuxt-link class="latest" to="/latest">Latest</nuxt-link>
+          <nuxt-link class="press" to="/press">Press</nuxt-link>
+          <nuxt-link class="blog" to="/blog">Blog</nuxt-link>
+          <nuxt-link class="contact" to="/contact">Contact</nuxt-link>
+        </a-col>
+        <a-col :span="10"> </a-col>
+      </a-row>
+    </div>
     <div>
       <Nuxt />
     </div>
@@ -21,7 +23,7 @@
       <a-row>
         <a-col class="footer" :span="24">
           <div class="firstfooter">
-            <a-back-top id="button" class="circle"> 
+            <a-back-top id="button" class="circle">
               <div class="arrow1"></div>
               <div class="arrow2"></div>
             </a-back-top>
@@ -33,11 +35,11 @@
     <div class="footerlogo">
       <a-row>
         <a-col :span="7"></a-col>
-        <a-col :span="2"><img src="../images/logo-02.svg" alt=""></a-col>
-        <a-col :span="2"><img src="../images/logo-03.svg" alt=""></a-col>
-        <a-col :span="2"><img src="../images/logo-04.svg" alt=""></a-col>
-        <a-col :span="2"><img src="../images/logo-05.svg" alt=""></a-col>
-        <a-col :span="2"><img src="../images/logo-06.svg" alt=""></a-col>
+        <a-col :span="2"><img src="../images/logo-02.svg" alt=""/></a-col>
+        <a-col :span="2"><img src="../images/logo-03.svg" alt=""/></a-col>
+        <a-col :span="2"><img src="../images/logo-04.svg" alt=""/></a-col>
+        <a-col :span="2"><img src="../images/logo-05.svg" alt=""/></a-col>
+        <a-col :span="2"><img src="../images/logo-06.svg" alt=""/></a-col>
         <a-col :span="7"></a-col>
       </a-row>
     </div>
@@ -61,7 +63,7 @@ export default {};
   display: flex;
   justify-content: center;
 }
-.bg{
+.bg {
   background-color: transparent;
 }
 .logoimage {
@@ -95,7 +97,6 @@ export default {};
   text-align: center;
 }
 .footertext {
-
   display: flex;
   justify-content: center;
   background: #1c1c1c;
@@ -167,30 +168,30 @@ export default {};
   padding: 30px;
 }
 .footerlogo {
-    background-color: #171717;
+  background-color: #171717;
 }
 .flogo {
   width: 100px;
   height: 100px;
 }
-a:hover{
+a:hover {
   color: #02d767;
 }
-a:focus{
-  border-bottom:2px solid #02d767 ;
+a:focus {
+  border-bottom: 2px solid #02d767;
 }
-.circle:hover{
+.circle:hover {
   background: #171717;
   border: none;
 }
-.circle:focus{
+.circle:focus {
   background: #171717;
 }
 .ant-back-top {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
-.firstfooter{
+.firstfooter {
   padding-top: 50px;
   padding-left: 200px;
 }

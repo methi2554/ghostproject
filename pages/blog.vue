@@ -56,12 +56,13 @@
       </a-row>
 
       <a-row class="rowcard" :gutter="[0, 16]">
+
         <a-col
           class="colcard"
           :span="8"
           v-for="(blog, index) in blogs"
-          :key="index"
-        >
+          :key="index">
+        <nuxt-link :to="{ path: blog.slug }">
           <a-card class="card">
             <img
               class="cardpicture"
@@ -70,7 +71,8 @@
               :src="blog.feature_image"
             />
             <p style="color:white">{{ blog.title }}</p>
-          </a-card>
+          </a-card>        
+          </nuxt-link>
         </a-col>
       </a-row>
     </a-col>

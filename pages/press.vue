@@ -61,14 +61,18 @@
           >
             <a-row style="">
               <a-col :span="1"></a-col>
-              <a-col :span="23" style=""
-                >{{ pres.excerpt }}
-                <p style="color:white">{{ pres.published_at }}</p>
-              </a-col>
+              <nuxt-link style="color:#02d767" :to="{ path: pres.slug }">
+                <a-col :span="23" style=""
+                  >{{ pres.title }}
+                  <p style="color:white">
+                    {{ $moment(pres.published_at).format("Do MMM YYYY") }}
+                  </p>
+                </a-col>
+              </nuxt-link>
             </a-row>
           </a-col>
-          <div >
-          <a-pagination size="small" :total="50"  />
+          <div>
+            <a-pagination size="small" :total="total" style="display:flex ; justify-content:right" />
           </div>
         </a-row>
       </a-col>
@@ -134,12 +138,25 @@ export default {
   border-radius: 10px;
   padding-top: 20px;
 }
-.pagination .ant-pagination-item.ant-pagination-item-1.ant-pagination-item-active {
+.pagination
+  .ant-pagination-item.ant-pagination-item-1.ant-pagination-item-active {
   text-align: right;
   color: red;
 }
-.ant-pagination-item a{
-  color: white  !important;
+.ant-pagination-item a {
+  color: white !important;
 }
-
+input[type="text"]::placeholder {
+  padding-left: 10%;
+  color: white;
+}
+.radio{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  border: 2px solid red;
+  top: 50%;
+  left: 10%;
+  color: white;
+}
 </style>

@@ -29,22 +29,24 @@
           <a-row class="rowcard">
             <a-col :span="24">
               <div class="divcard">
-                <a-row class="rowcard" :gutter="[0,48]">
+                <a-row class="rowcard" :gutter="[0, 48]">
                   <a-col
                     class="colcard"
                     :span="8"
-                    v-for="(post, index) in posts"
+                    v-for="(latest, index) in latests"
                     :key="index"
                   >
-                    <a-card class="card">
-                      <img
-                        class="cardpicture"
-                        slot="cover"
-                        alt="example"
-                        :src="post.feature_image"
-                      />
-                      <p style="color:white">{{ post.title }}</p>
-                    </a-card>
+                    <nuxt-link :to="{ path: latest.slug }">
+                      <a-card class="card">
+                        <img
+                          class="cardpicture"
+                          slot="cover"
+                          alt="example"
+                          :src="latest.feature_image"
+                        />
+                        <p style="color:white">{{ latest.title }}</p>
+                      </a-card>
+                    </nuxt-link>
                   </a-col>
                 </a-row>
               </div>
@@ -62,8 +64,8 @@ import { getLatest } from "../api/posts";
 export default {
   layout: "Header",
   async asyncData() {
-    const posts = await getLatest();
-    return { posts: posts };
+    const latests = await getLatest();
+    return { latests: latests };
   }
 };
 </script>
